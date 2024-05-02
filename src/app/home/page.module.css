@@ -1,0 +1,12 @@
+.container {
+    display: flex;
+    gap: 200px;
+    flex: 1;
+}
+
+.title {
+    font-size: 200px;
+    background: linear-gradient(to bottom, orange, aqua);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
