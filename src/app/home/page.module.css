@@ -1,12 +1,23 @@
 .container {
+    
+}
+.page_body {
+    display: block;
+    margin: 0 auto;
+    max-width: 1280px;
+    min-height: 600px;
     display: flex;
-    gap: 200px;
+    justify-content: space-between;
     flex: 1;
 }
 
-.title {
-    font-size: 200px;
-    background: linear-gradient(to bottom, orange, aqua);
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+.page_main {
+    width: 75%;
+    border-radius: 15px;
 }
+
+.page_side {
+    width: 20%;
+    background-color: blue;
+}
+

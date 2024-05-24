@@ -20,13 +20,23 @@ html,body {
 }
 
 .light {
-  background-color: #fff;
+  background-color: #E3EDCD;
   color: #000
 }
 
 .light input {
   background-color: #000;
   color: #fff;
+}
+
+.light .common_bg {
+  background-color: #e3f2fd; /* 或者 #bbdefb */
+  color: #333333; /* 深灰色文本 */
+}
+
+.dark .common_bg {
+  background-color: #2a4d69; /* 或者 #2a4d69 */
+  color: #ffffff; /* 白色文本 */
 }
 
 a {

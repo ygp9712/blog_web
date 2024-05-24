@@ -23,3 +23,4 @@ export type UserType = {
     email?: String,
     phone?: String
 }
+

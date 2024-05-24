@@ -11,7 +11,7 @@ const Navbar = () => {
   console.log('session', session)
   return (
     <div className={styles.container}>
-        <div className={styles.logo}>logo</div>
+        <div className={styles.logo}>Magnolia</div>
         <div className={styles.links}>
             <DarkModeToggle />
             {
