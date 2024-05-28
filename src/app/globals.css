@@ -34,6 +34,14 @@ html,body {
   color: #333333; /* 深灰色文本 */
 }
 
+.light a {
+  color: #333333 !important; /* 深灰色文本 */
+}
+
+.dark a {
+  color: #ffffff; /* 深灰色文本 */
+}
+
 .dark .common_bg {
   background-color: #2a4d69; /* 或者 #2a4d69 */
   color: #ffffff; /* 白色文本 */

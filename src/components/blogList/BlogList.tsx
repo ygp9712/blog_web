@@ -9,16 +9,24 @@ const BlogList = () => {
         },
         {
 
+        },
+        {
+
+        },
+        {
+
         }
     ]
   return (
     <div className={style.list_container}>
         {
-            list && list.map(item => (
-                <BlogItem></BlogItem>
+            list && list.map((item, index) => (
+                <BlogItem key={index}></BlogItem>
             ))
         }
-        <Pagination defaultCurrent={1} total={50} />
+        <div className={style.list_page}>
+            <Pagination  defaultCurrent={1} total={50} />
+        </div>
     </div>
   )
 }

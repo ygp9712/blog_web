@@ -4,8 +4,13 @@
     padding: 20px;
 }
 
+.blog_item:hover {
+    cursor: pointer;
+    box-shadow: 0px 2px 2px #fff;
+}
+
 .blog_item + .blog_item {
-    border-top: 1px solid #E5E5E5;
+    border-top: 1px solid #E5E5E599;
 }
 
 .item_left {
