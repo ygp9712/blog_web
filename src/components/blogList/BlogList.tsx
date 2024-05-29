@@ -2,25 +2,18 @@ import React from 'react';
 import style from './BlogList.module.css';
 import BlogItem from './components/BlogItem';
 import { Pagination } from 'antd';
-const BlogList = () => {
-    let list = [
-        {
 
-        },
-        {
+interface IParams {
+    data: IBlogItem[]
+}
 
-        },
-        {
-
-        },
-        {
-
-        }
-    ]
+const BlogList = (params: IParams) => {
+    const { data } = params
+    console.log('paramgs', params)
   return (
     <div className={style.list_container}>
         {
-            list && list.map((item, index) => (
+            data && data.map((item, index) => (
                 <BlogItem key={index}></BlogItem>
             ))
         }
