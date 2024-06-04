@@ -21,4 +21,4 @@ export const getBlogList = (params: blogListType) => {
         method: 'POST', 
         body: params
     });
-  };
+};

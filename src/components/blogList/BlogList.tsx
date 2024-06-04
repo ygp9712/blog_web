@@ -14,7 +14,7 @@ const BlogList = (params: IParams) => {
     <div className={style.list_container}>
         {
             data && data.map((item, index) => (
-                <BlogItem key={index}></BlogItem>
+                <BlogItem data={item} key={index}></BlogItem>
             ))
         }
         <div className={style.list_page}>
