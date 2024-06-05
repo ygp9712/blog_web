@@ -13,6 +13,7 @@ class FetchError extends Error {
 
 interface FetchOptions extends RequestInit {
     body?: any; // 可以接受任意类型的请求体
+    responseType?: 'json' | 'blob'; // 添加 responseType
 }
 
 export async function request(requestUrl: String, options: FetchOptions = {}):Promise<any> {
@@ -29,20 +30,27 @@ export async function request(requestUrl: String, options: FetchOptions = {}):Pr
   const response = await fetch(url, init);
 
 
+
   if (!response.ok) {
     const info = await response.json();
     const error = new FetchError('请求错误。', info, response.status);
     throw error;
   }
+
   let jsonResponse;
-  try {
-    jsonResponse = await response.json();
-  } catch (err) {
-    // message.error('转化JSON失败');
-    throw new Error('转化JSON失败');
+
+  if (options.responseType === 'blob') {
+    jsonResponse = await response.blob(); // 返回blob流
+  } else {
+    try {
+      jsonResponse = await response.json(); // 返回标准json
+    } catch (err) {
+      throw new Error('转化JSON失败');
+    }
   }
 
-  if (!response.ok || jsonResponse.Response?.ErrCode !== '0') {
+
+  if (!response.ok || (options.responseType !== 'blob' && jsonResponse.Response?.ErrCode !== '0')) {
     const errorMessage = jsonResponse.Response?.ErrMessage || '接口请求失败';
     // message.error(errorMessage);
     throw new FetchError(errorMessage, jsonResponse, response.status);

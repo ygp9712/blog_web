@@ -24,7 +24,18 @@ const BlogItem = (props: IProps) => {
             </div>
       </div>
       <div className={style.item_right}>
-          <img className={style.item_img} src="/test.jpg" alt="" />
+          {
+            blog.url && 
+            (
+                <img className={style.item_img} src={blog.url} alt="" />
+            )
+          }
+          {
+            !blog.url && 
+            <div className={`${style.item_img} ${style.default_img}`}>
+              <i style={{fontSize: '40px'}} className="iconfont icon-tupian"></i>
+            </div>
+          }
       </div>
     </div>
   )

@@ -11,5 +11,6 @@ interface IBlogItem {
   author: string,
   status: number,
   type: any,
-  desc?: string
+  desc?: string,
+  url?: string
 }

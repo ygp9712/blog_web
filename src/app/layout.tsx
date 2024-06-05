@@ -6,6 +6,7 @@ import Footer from "@/components/footer/Footer";
 import { ThemeProvider, ThemeContext } from "@/context/ThemeContext";
 import AuthProvider from "@/components/AuthProvider/AuthProvider";
 import { ConfigProvider } from 'antd';
+import '@/assets/iconfont/iconfont.css'
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
