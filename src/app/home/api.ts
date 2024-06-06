@@ -2,9 +2,9 @@ import request from "@/utils/request";
 
 interface blogListType {
     title?: string,
-    type?: number,
+    type?: string,
     page: number | string,
-    pagesize?: number
+    pagesize?: number,
 } 
 // export const getBlogList = async (params:blogListType) => {
 //     try {
@@ -20,5 +20,11 @@ export const getBlogList = (params: blogListType) => {
     return request('api/blog', {
         method: 'POST', 
         body: params
+    });
+};
+
+export const getStats = () => {
+    return request('api/stats', {
+        method: 'GET'
     });
 };

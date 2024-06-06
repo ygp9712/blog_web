@@ -5,47 +5,59 @@ import styles from './page.module.css'
 import BlogList from '@/components/blogList/BlogList'
 import Me from '@/components/me/me'
 import TypeField from '@/components/typeField/typeField'
-import { getBlogList } from './api'
+import { getBlogList, getStats } from './api'
 import { getPic } from '@/utils/common';
-
+import { cloneByJson } from '@/utils/common';
 const home =  () => {
-  const [blogList, setBlogList] = useState<IBlogItem[]>([])
+  const [blogList, setBlogList] = useState<IBlogItem[]>([]);
+  const [stats, setStats] = useState<IStats>();
   const [page, setPage] = useState(1);
+  const [type, setType] = useState('');
   const [pageSize, setPageSize] = useState(5);
   const [total, setTotal] = useState(0);
-  useEffect( () => {
+
+  const handleTagClick = (type: string) => {
+    setPage(1);
+    setType(type);
+    handleList();
+  }
+  const handlePageChange = (page: number) => {
+    setPage(page);
+    handleList();
+  }
+  const handleList = () => {
     let params = {
-      page: 1,
-      pageSize
+      page,
+      pageSize,
+      type
     }
+    console.log('查询参数', params)
     getBlogList(params).then(res => {
       console.log('返回', res);
-
       setBlogList(res.Response.Result.data);
-      setPage(res.Response.Result.page);
       setTotal(res.Response.Result.total);
     });
-  }, [])
-  useEffect(() => {
-    let temp = blogList;
-    temp.forEach(item => {
-      getPic(item.cover).then(url => {
-        item.url = url;
-        setBlogList(temp);
-        // console.log('blog', blogList)
-      })
+    
+  }
+  useEffect( () => {
+    handleList();
+    getStats().then(res => {
+      setStats(res.Response.Result);
+      console.log('统计', res)
     })
-  }, [blogList])
+  }, []);
+
   return (
     <div className={styles.container}>
       <div className={styles.page_body}>
           <main className={`${styles.page_main} common_bg`}>
-            <BlogList data={blogList}></BlogList>
+            <BlogList handlePageChange={handlePageChange} page={page} pageSize={pageSize} total={total}  data={blogList}></BlogList>
           </main>
 
           <div className={`${styles.page_side}`}>
-            <Me></Me>
-            <TypeField></TypeField>
+            {stats && <Me stats={stats}></Me>}
+            {stats && <TypeField handleTagClick={handleTagClick} stats={stats}></TypeField>}
+            
           </div>
       </div>
       

@@ -4,11 +4,15 @@ import BlogItem from './components/BlogItem';
 import { Pagination } from 'antd';
 
 interface IParams {
-    data: IBlogItem[]
+    data: IBlogItem[],
+    page: number
+    pageSize: number,
+    total: number
+    handlePageChange: (page: number) => void
 }
 
 const BlogList = (params: IParams) => {
-    const { data } = params
+    const { data, total, page, pageSize, handlePageChange } = params
     console.log('paramgs', params)
   return (
     <div className={style.list_container}>
@@ -18,7 +22,7 @@ const BlogList = (params: IParams) => {
             ))
         }
         <div className={style.list_page}>
-            <Pagination  defaultCurrent={1} total={50} />
+            <Pagination onChange={handlePageChange}  defaultCurrent={1} total={total} pageSize={pageSize} />
         </div>
     </div>
   )

@@ -14,3 +14,11 @@ interface IBlogItem {
   desc?: string,
   url?: string
 }
+
+interface IStats {
+  month: number
+  monthCount: number
+  types: {_id: any, count: number}[]
+  year: number
+  yearCount: number
+}

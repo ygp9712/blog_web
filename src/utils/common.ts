@@ -21,3 +21,12 @@ export function getPic(id:string):Promise<string> {
       });
     });
 }
+
+/**
+ * @description 通过JSON.stringify、JSON.parse对对象进行克隆
+ * @param {Object} 克隆前的对象
+ * @returns 克隆后的对象
+ */
+export function cloneByJson(obj: object) {
+  return JSON.parse(JSON.stringify(obj))
+}
