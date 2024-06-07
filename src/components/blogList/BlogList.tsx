@@ -18,11 +18,11 @@ const BlogList = (params: IParams) => {
     <div className={style.list_container}>
         {
             data && data.map((item, index) => (
-                <BlogItem data={item} key={index}></BlogItem>
+                    <BlogItem data={item} key={index}></BlogItem>
             ))
         }
         <div className={style.list_page}>
-            <Pagination onChange={handlePageChange}  defaultCurrent={1} total={total} pageSize={pageSize} />
+            <Pagination onChange={handlePageChange}  current={page} total={total} pageSize={pageSize} />
         </div>
     </div>
   )

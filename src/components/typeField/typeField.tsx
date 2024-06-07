@@ -13,6 +13,7 @@ const TypeField = (params : IParams) => {
       <p>文章分类：</p>
       <div className={style.type_container}>
         <Space wrap={true}>
+        <Tag onClick={() => params.handleTagClick('')} style={{cursor: 'pointer'}}>全部</Tag>
           {
             params.stats.types.map(item => (
               <Tag key={item._id} onClick={() => params.handleTagClick(item._id)} style={{cursor: 'pointer'}} color={typeColorOption[Number(item._id % 10)].name}>{blogTypeParams[item._id]}({item.count})</Tag>

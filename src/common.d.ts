@@ -5,6 +5,7 @@ declare module '*.module.less' {
   }
 
 interface IBlogItem {
+  _id: string
   title: string,
   cover: string,
   add_time: date,

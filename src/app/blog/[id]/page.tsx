@@ -1,39 +1,29 @@
-"use client";
-import { IProps } from '@/@types'
-import { notFound } from 'next/navigation'
 import React from 'react'
-import useSWR from 'swr'
+import styles from './page.module.css'
+import { LeftOutlined } from '@ant-design/icons';
+import Link from 'next/link';
 
-type IParams = {
-  id: String | null
-}
-
-
-const fetcher = (obj: any) => fetch(obj).then((res) => {
-  
-  if (!res.ok) {
-    // This will activate the closest `error.js` Error Boundary
-    throw notFound();
-  }
-
-  return   res.json()
-})
-
-
-
-const exampleId: React.FC<IProps<IParams>>  =  ({ params }) => {
-  const { data, error  } =  useSWR('https://jsonplaceholder.typicode.com/posts/' + params.id, fetcher);
-  console.log('blog数据', data)
-  
-  if (error) return <div>Failed to load</div> // fetch失败时展示
-  if (!data) return <div>Loading...</div> // loading时展示
-  
+const BlogDetailPage = () => {
   return (
-    <div>
-      <p><b>{params.id}、{data.title}</b></p>
-      <p>{data.body}</p>
+    <div className={styles.container}>
+      <div className={styles.page_body}>
+          <main className={`${styles.page_main} common_bg`}>
+            123456
+          </main>
+
+          <div className={`${styles.page_side}`}>
+            <Link href={'/blog'}>
+              <div className={`${styles.page_return} common_bg`}>
+                <LeftOutlined />
+                <span style={{marginLeft: '10px'}}>返回列表</span>
+              </div>
+            </Link>
+              
+          </div>
+      </div>
+      
     </div>
   )
 }
 
-export default exampleId
+export default BlogDetailPage

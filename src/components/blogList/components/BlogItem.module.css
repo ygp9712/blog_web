@@ -4,6 +4,10 @@
     padding: 20px;
 }
 
+/* a.blog_item:nth-child(1) >  {
+    border-top: 1px solid #E5E5E599;
+} */
+
 .blog_item:hover {
     cursor: pointer;
     box-shadow: 0px 0px 10px #fff;
@@ -13,9 +17,6 @@
     transform: scale(1.2);
 }
 
-.blog_item + .blog_item {
-    border-top: 1px solid #E5E5E599;
-}
 
 .item_left {
     display: flex;
