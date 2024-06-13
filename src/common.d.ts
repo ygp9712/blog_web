@@ -14,6 +14,7 @@ interface IBlogItem {
   type: any,
   desc?: string,
   url?: string
+  content: string
 }
 
 interface IStats {

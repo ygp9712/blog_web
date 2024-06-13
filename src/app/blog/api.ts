@@ -23,6 +23,17 @@ export const getBlogList = (params: blogListType) => {
     });
 };
 
+interface blogDetailType {
+    id: string,
+} 
+
+export const getBlogDetail = (params: blogDetailType) => {
+    return request('api/blog/detail', {
+        method: 'POST', 
+        body: params
+    });
+};
+
 export const getStats = () => {
     return request('api/stats', {
         method: 'GET'
