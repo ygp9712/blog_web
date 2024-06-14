@@ -36,6 +36,9 @@
     font-size: 32px;
 }
 .page_side {
+    position: fixed;
+    top: 100px;
+    right: 50px;
     width: 20%;
     /* background-color: blue; */
 }
@@ -58,6 +61,14 @@
 
 }
 
+.heading_title {
+    font-size: 25px;
+    line-height: 50px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #CCCCCC77;
+
+}
+
 .heading_h1 {
     text-indent: 5px;
     font-size: 18px;
@@ -69,4 +80,5 @@
     line-height: 25px;
     opacity: 0.7;
 }
+
 

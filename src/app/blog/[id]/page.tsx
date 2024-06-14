@@ -18,6 +18,8 @@ interface Heading {
   index: number;
   text: string;
   tag: 'H1' | 'H2'
+  left: number
+  top: number
 }
 
 interface HeadingsRef {
@@ -27,13 +29,14 @@ interface HeadingsRef {
 const BlogDetailPage = (params: IParams) => {
   const contentRef = useRef<HTMLDivElement>(null);
   const headingsRef = useRef<HeadingsRef>({});
+  const now = useRef<number>()
   const [data, setData] = useState<IBlogItem>();
   const [headings, setHeadings] = useState<Heading[]>([]);
-
+  const [nowShow, setNowShow] = useState<number>(0);
   const handleDetail = (id:string) => {
     getBlogDetail({id}).then(res => {
       let temp = res.Response.Result.data;
-      console.log('详情', temp);
+      // console.log('详情', temp);
       let date = new Date(temp.add_time);
       temp.add_time = date.getFullYear()+'-'+(date.getMonth()+1).toString().padStart(2, '0')+'-'+(date.getDate()).toString().padStart(2, '0')
       setData(temp);
@@ -41,13 +44,35 @@ const BlogDetailPage = (params: IParams) => {
   }
 
   const scrollToHeading = (index: number) => {
-    if (headingsRef.current[index]) {
-      console.log(headingsRef.current[index])
-      
-      headingsRef.current[index]?.scrollIntoView({ block: "end" });
+    const target = headings[index]
+    if (target) {
+      // console.log(target)
+      window.scrollTo({
+        top: target.top,
+        behavior: 'smooth'
+      })
     }
   };
-
+  const handleScroll = () => {
+    if (data && contentRef.current) {
+      const h1Doms = contentRef.current.querySelectorAll('h1,h2');
+      h1Doms.forEach((chapter, index) => {
+        const element = chapter;
+        // 获取元素在可视区域中的位置
+        if(element) {
+          const rect = element.getBoundingClientRect();  
+          // 判断是否在可视区域内 
+          if (rect.top >= 0 && rect.bottom <= window.innerHeight) {
+            // console.log('index', index)
+            now.current = index;
+            setNowShow(index);
+            // console.log('now', now);
+            // console.log('nowShow', nowShow);
+          }
+        }
+      })
+    }
+  }
 
   useEffect(() => {
     handleDetail(params.params.id);
@@ -58,16 +83,23 @@ const BlogDetailPage = (params: IParams) => {
       const h1Doms = contentRef.current.querySelectorAll('h1,h2');
       let temp:Heading[] = [];
       h1Doms.forEach((heading: any, index) => {
+        const rect = heading.getBoundingClientRect();
+        // console.log('rect', rect)
         headingsRef.current[index] = heading;
         temp.push({
           index,
           text: heading.innerText,
-          tag: heading.tagName
+          tag: heading.tagName,
+          left: rect.left,
+          top: rect.top,
         })
       });
       setHeadings(temp);
-      console.log('headingsRef', headingsRef);
-
+      
+      window.addEventListener('scroll', () =>  handleScroll.bind(this)());
+      return () => {
+        window.removeEventListener('scroll', () => handleScroll.bind(this)());
+      }
     }
   }, [data]);
 
@@ -94,12 +126,13 @@ const BlogDetailPage = (params: IParams) => {
               </div>
             </Link>
             <div className={`${styles.page_navigate} common_bg`}>
+              <p className={styles.heading_title}>目录</p>
               {
                 headings && headings.map(item => (
                   item.tag === 'H1' ?
-                  <div onClick={() => scrollToHeading(item.index)} key={item.index} className={`${styles.heading_h1} ${styles.heading_item} hover`} >{item.text}</div>
+                  <div onClick={() => scrollToHeading(item.index)} key={item.index} className={`${styles.heading_h1} ${styles.heading_item} ${nowShow == item.index ? 'active' : ''} hover`} >{item.text}</div>
                   :
-                  <div onClick={() => scrollToHeading(item.index)} key={item.index} className={`${styles.heading_h2} ${styles.heading_item} hover`} >{item.text}</div>
+                  <div onClick={() => scrollToHeading(item.index)} key={item.index} className={`${styles.heading_h2} ${styles.heading_item} ${nowShow == item.index ? 'active' : ''} hover`} >{item.text}</div>
                 ))
               }
             </div>

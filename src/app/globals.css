@@ -47,6 +47,17 @@ html,body {
   color: #ffffff; /* 白色文本 */
 }
 
+.light .active {
+  background-color: #333333;
+  color: #e3f2fd;
+}
+
+.dark .active {
+  background-color: #fff;
+  color: #2a4d69;
+}
+
+
 .light .hover:hover {
   background-color: #333333;
   color: #e3f2fd;
