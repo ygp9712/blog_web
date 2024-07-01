@@ -1,11 +1,14 @@
 'use client';
 import React, { useEffect, useRef, useState } from 'react'
+import ReactDOMServer  from  'react-dom/server'
 import styles from './page.module.css'
 import { LeftOutlined } from '@ant-design/icons';
 import Link from 'next/link';
 import {getBlogDetail} from '../api'
 import { UserOutlined, FolderOpenOutlined, CalendarOutlined } from '@ant-design/icons';
 import { blogTypeParams } from '@/enum/params';
+import CodeBlock from '@/components/CodeBlock/CodeBlock';
+import { cloneByJson } from '@/utils/common';
 
 interface IParams {
   params: {
@@ -27,6 +30,7 @@ interface HeadingsRef {
 }
 
 const BlogDetailPage = (params: IParams) => {
+  const [toggle, setToggle] = useState<Boolean>(false);
   const contentRef = useRef<HTMLDivElement>(null);
   const headingsRef = useRef<HeadingsRef>({});
   const now = useRef<number>()
@@ -36,10 +40,19 @@ const BlogDetailPage = (params: IParams) => {
   const handleDetail = (id:string) => {
     getBlogDetail({id}).then(res => {
       let temp = res.Response.Result.data;
-      // console.log('详情', temp);
+      const replacedContent = temp.content.replace(
+        /<pre class="ql-syntax" spellcheck="false">([\s\S]*?)<\/pre>/g,
+        (match: any, code: string) => {
+          return ReactDOMServer.renderToString(<CodeBlock language='js' code={code}></CodeBlock>);
+          ;
+        }
+      );
+      temp.content = replacedContent;
+      console.log('详情', temp);
+
       let date = new Date(temp.add_time);
       temp.add_time = date.getFullYear()+'-'+(date.getMonth()+1).toString().padStart(2, '0')+'-'+(date.getDate()).toString().padStart(2, '0')
-      setData(temp);
+      setData(cloneByJson(temp));
     })
   }
 
@@ -79,6 +92,7 @@ const BlogDetailPage = (params: IParams) => {
   }, [])
 
   useEffect(() => {
+    // 处理目录导航
     if (data && contentRef.current) {
       const h1Doms = contentRef.current.querySelectorAll('h1,h2');
       let temp:Heading[] = [];
@@ -95,7 +109,7 @@ const BlogDetailPage = (params: IParams) => {
         })
       });
       setHeadings(temp);
-      
+
       window.addEventListener('scroll', () =>  handleScroll.bind(this)());
       return () => {
         window.removeEventListener('scroll', () => handleScroll.bind(this)());

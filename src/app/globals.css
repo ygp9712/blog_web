@@ -42,6 +42,26 @@ html,body {
   color: #ffffff; /* 深灰色文本 */
 }
 
+.codeBox {
+  border-radius: 10px;
+  padding: 25px;
+  margin: 20px 0;
+}
+
+/* .light .codeBox {
+  background-color: #EDF5F0;
+} */
+
+
+.light .codeBox {
+  color: #fff;
+  background-color: #1F1F1F;
+}
+
+.dark .codeBox {
+  background-color: #1F1F1F;
+}
+
 .dark .common_bg {
   background-color: #2a4d69; /* 或者 #2a4d69 */
   color: #ffffff; /* 白色文本 */

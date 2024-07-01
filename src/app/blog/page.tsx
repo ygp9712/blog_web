@@ -57,7 +57,7 @@ const BlogPage =  () => {
     <div className={styles.container}>
       <div className={styles.page_body}>
           <main className={`${styles.page_main} common_bg`}>
-            <BlogList handlePageChange={handlePageChange} page={page} pageSize={pageSize} total={total}  data={blogList}></BlogList>
+            <BlogList  handlePageChange={handlePageChange} page={page} pageSize={pageSize} total={total}  data={blogList}></BlogList>
           </main>
 
           <div className={`${styles.page_side}`}>
