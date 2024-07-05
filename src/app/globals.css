@@ -35,11 +35,19 @@ html,body {
 }
 
 .light a {
-  color: #333333 !important; /* 深灰色文本 */
+  color: #333333; /* 深灰色文本 */
+}
+
+.light a:hover {
+  color: #95CA6A;
 }
 
 .dark a {
   color: #ffffff; /* 深灰色文本 */
+}
+
+.dark a:hover {
+  color: #95CA6A;
 }
 
 .codeBox {

@@ -13,7 +13,6 @@ const Navbar = () => {
     <div className={styles.container}>
         <div className={styles.logo}>Magnolia</div>
         <div className={styles.links}>
-            <DarkModeToggle />
             {
                 navRoutes.map((route :routeType) => (
                     <Link key={route.id} href={route.url}>{route.title}</Link>
@@ -25,7 +24,9 @@ const Navbar = () => {
               )
             }
         </div>
-
+        <div className={styles.extra}>
+          <DarkModeToggle />
+        </div>
         
     </div>
   )

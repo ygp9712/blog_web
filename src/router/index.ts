@@ -8,45 +8,45 @@ type routeType = {
 }
 
 const navRoutes: routeType[] = [
-    {
-        id: '99',
-        title: 'home',
-        url: {
-            pathname: '/home',
-            query: { name: 'test' },
-          }
-    },
-    {
-        id: '1',
-        title: 'my',
-        url: {
-            pathname: '/my',
-            query: { name: 'test' },
-          }
-    },
+    // {
+    //     id: '99',
+    //     title: 'home',
+    //     url: {
+    //         pathname: '/home',
+    //         query: { name: 'test' },
+    //       }
+    // },
     {
         id: '2',
-        title: 'BLOG',
+        title: '主页',
         url: {
-            pathname: '/blog',
-            query: { name: 'test' },
-        }
-    },
-    {
-        id: '3',
-        title: 'contact',
-        url: {
-            pathname: '/contact',
-            query: { name: 'ygp' },
+            pathname: '/blog'
         }
     },
     {
         id: '4',
-        title: 'dashboard',
+        title: '作品',
         url: {
             pathname: '/dashboard',
         }
     },
+    {
+        id: '1',
+        title: '关于',
+        url: {
+            pathname: '/my'
+          }
+    },
+    
+    // {
+    //     id: '3',
+    //     title: 'contact',
+    //     url: {
+    //         pathname: '/contact',
+    //         query: { name: 'ygp' },
+    //     }
+    // },
+    
 ]
 
 export {
