@@ -1,6 +1,7 @@
 .container {
     margin: 0 auto;
     max-width: 1400px;
+    margin-bottom: 40px;
     height: 100px;
     display: flex;
     align-items: center;
@@ -24,10 +25,29 @@
 }
 
 .links a {
+    display: block;
+    padding: 5px 10px;
+    border-radius: 5px;
     text-decoration: none;
     color: inherit;
 }
 
+.links .now_active {
+    background: #95CA6A;;
+}
+
+.links a::after {
+    content: " ";
+    display: block;
+    width: 0%;
+    height: 5px;
+    background: #95CA6A;
+    transition: width 0.5s ease;
+}
+
+.links a:hover::after {
+    width: 100%; 
+}
 
 
 .extra {

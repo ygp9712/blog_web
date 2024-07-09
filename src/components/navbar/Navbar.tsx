@@ -6,16 +6,21 @@ import {navRoutes, routeType} from '../../router'
 import DarkModeToggle from '../darkModeToggle/DarkModeToggle'
 import { useSession } from 'next-auth/react'
 import { Button } from 'antd'
+import { usePathname } from 'next/navigation'
+
 const Navbar = () => {
   const session = useSession();
-  console.log('session', session)
+  const pathname = usePathname();
+  // console.log('session', session)
+  console.log('navRoutes', navRoutes)
+  console.log('pathname', pathname);
   return (
     <div className={styles.container}>
         <div className={styles.logo}>Magnolia</div>
         <div className={styles.links}>
             {
                 navRoutes.map((route :routeType) => (
-                    <Link key={route.id} href={route.url}>{route.title}</Link>
+                    <Link className={`${route.url.pathname == pathname ? 'common_bg' : ''}`} key={route.id} href={route.url}>{route.title}</Link>
                 ))
             }
             {
