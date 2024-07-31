@@ -1,7 +1,10 @@
 .blog_item {
+    box-sizing: border-box;
+    position: relative;
     display: flex;
     justify-content: space-between;
     padding: 20px;
+    min-height: 150px;
 }
 
 /* a.blog_item:nth-child(1) >  {
@@ -22,13 +25,19 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    width: 70%;
+    width: 100%;
+    gap: 20px;
 }
 
 .item_right {
+    position: absolute;
+    right: 10px;
+    opacity: 0.8;
     overflow: hidden;
-    width: 25%;
-    height: 120px;
+    width: 35%;
+    min-height: 120px;
+    mask: linear-gradient(to right, transparent, #000);
+    background-size: 100% 100%;
 }
 
 .blog_title {

@@ -37,19 +37,19 @@ const BlogItem = (props: IProps) => {
                   {blog.desc ? blog.desc : '暂无简介'}
               </div>
         </div>
-        <div className={style.item_right}>
-            {
+        <div style={{backgroundImage: img ? `url(${img})` : `linear-gradient(#999, #999)`}} className={style.item_right}>
+            {/* {
               img && 
               (
                   <img className={style.item_img} src={img} alt="" />
               )
-            }
-            {
+            } */}
+            {/* {
               !img && 
               <div className={`${style.item_img} ${style.default_img}`}>
                 <i style={{fontSize: '40px'}} className="iconfont icon-tupian"></i>
               </div>
-            }
+            } */}
         </div>
       </div>
     </Link>

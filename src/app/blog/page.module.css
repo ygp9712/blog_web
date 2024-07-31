@@ -21,3 +21,13 @@
     /* background-color: blue; */
 }
 
+@media (max-width: 1200px) {
+    .page_side {
+        display: none;
+        /* background-color: blue; */
+    }
+    .page_main {
+        width: 100%;
+        border-radius: 0;
+    }
+}
