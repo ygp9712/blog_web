@@ -22,6 +22,7 @@
 
 
 .item_left {
+    z-index: 5;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -31,11 +32,13 @@
 
 .item_right {
     position: absolute;
+    top: 5%;
     right: 10px;
     opacity: 0.8;
     overflow: hidden;
     width: 35%;
-    min-height: 120px;
+    /* min-height: 120px; */
+    height: 90%;
     mask: linear-gradient(to right, transparent, #000);
     background-size: 100% 100%;
 }
