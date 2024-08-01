@@ -57,6 +57,9 @@ const BlogPage =  () => {
     <div className={styles.container}>
       <div className={styles.page_body}>
           <main className={`${styles.page_main} common_bg`}>
+            <div className="hide_1200">
+              {stats && <TypeField handleTagClick={handleTagClick} stats={stats}></TypeField>}
+            </div>
             <BlogList  handlePageChange={handlePageChange} page={page} pageSize={pageSize} total={total}  data={blogList}></BlogList>
           </main>
 

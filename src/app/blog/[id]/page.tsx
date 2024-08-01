@@ -66,6 +66,8 @@ const BlogDetailPage = (params: IParams) => {
       })
     }
   };
+
+
   const handleScroll = () => {
     if (data && contentRef.current) {
       const h1Doms = contentRef.current.querySelectorAll('h1,h2');
@@ -87,12 +89,7 @@ const BlogDetailPage = (params: IParams) => {
     }
   }
 
-  useEffect(() => {
-    handleDetail(params.params.id);
-  }, [])
-
-  useEffect(() => {
-    // 处理目录导航
+  const updateHeading = () => {
     if (data && contentRef.current) {
       const h1Doms = contentRef.current.querySelectorAll('h1,h2');
       let temp:Heading[] = [];
@@ -109,9 +106,52 @@ const BlogDetailPage = (params: IParams) => {
         })
       });
       setHeadings(temp);
+    }
+    
+  }
+
+  useEffect(() => {
+    handleDetail(params.params.id);
+  }, [])
+
+  useEffect(() => {
+    // 处理目录导航
+    if (data && contentRef.current) {
+      // 获取所有的图片元素
+      const imgDoms = contentRef.current.querySelectorAll('img');
+      // 图片计数器
+      let loadedImagesCount = 0;
+      // updateHeading();
+      
+      // 图片加载处理
+      const onImageLoad = () => {
+        loadedImagesCount++;
+        if (loadedImagesCount === imgDoms.length) { // 如果已加载的图片等于全部图片则更新
+          updateHeading();
+        }
+      };
+
+      // 为每个图片添加加载事件监听
+      imgDoms.forEach((img: HTMLImageElement) => {
+        if (img.complete) {
+          onImageLoad();
+        } else {
+          img.addEventListener('load', onImageLoad);
+          img.addEventListener('error', onImageLoad);
+        }
+      });
+
+      // 如果没有图片，直接更新
+      if (imgDoms.length === 0) {
+        updateHeading();
+      }
 
       window.addEventListener('scroll', () =>  handleScroll.bind(this)());
       return () => {
+        imgDoms.forEach((img: HTMLImageElement) => {
+          img.removeEventListener('load', onImageLoad);
+          img.removeEventListener('error', onImageLoad);
+        });
         window.removeEventListener('scroll', () => handleScroll.bind(this)());
       }
     }

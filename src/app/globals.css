@@ -114,3 +114,15 @@ a {
   text-decoration: none;
   color: inherit;
 }
+
+@media (max-width: 1200px) {
+  .hide_1200 {
+      display: block;
+  }
+}
+
+@media (min-width: 1200px) {
+  .hide_1200 {
+      display: none;
+  }
+}
