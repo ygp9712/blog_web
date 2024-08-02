@@ -48,10 +48,11 @@ const BlogPage =  () => {
 
   useEffect(() => {
     handleList();
-  }, [page, type])
+  }, [page, type]);
+
   useEffect(() => {
     setPage(1);
-  }, [type])
+  }, [type]);
 
   return (
     <div className={styles.container}>

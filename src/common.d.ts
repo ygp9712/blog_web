@@ -17,6 +17,18 @@ interface IBlogItem {
   content: string
 }
 
+// 作品
+ interface IWorkItemType {
+  add_time: Date;
+  tech: string;
+  status: string;
+  cover: string;
+  title: string;
+  _id: string;
+  url?: string;
+  codeUrl: string;
+}
+
 interface IStats {
   month: number
   monthCount: number

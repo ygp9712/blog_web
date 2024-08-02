@@ -17,21 +17,21 @@ const navRoutes: routeType[] = [
     //       }
     // },
     {
-        id: '2',
+        id: '1',
         title: '主页',
         url: {
             pathname: '/blog'
         }
     },
     {
-        id: '4',
+        id: '2',
         title: '作品',
         url: {
-            pathname: '/dashboard',
+            pathname: '/work',
         }
     },
     {
-        id: '1',
+        id: '3',
         title: '关于',
         url: {
             pathname: '/my'
