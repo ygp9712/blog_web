@@ -3,7 +3,9 @@ import styles from './workItem.module.css';
 import { Space, Tag } from 'antd';
 import { blogTypeParams } from '@/enum/params';
 import { typeColorOption } from '@/enum/option';
-import { getPic } from '@/utils/common';
+import { getPic, parseTime } from '@/utils/common';
+import { GithubOutlined } from '@ant-design/icons';
+
 import Link from 'next/link';
 interface IProps {
   data: IWorkItemType
@@ -25,7 +27,26 @@ const WorkItem = (props: IProps) => {
   }, [props])
   return (
     <div className={styles.work_item}>
-
+        <img className={styles.work_cover} src={img} alt="" />
+        <p className={`${styles.work_title} doubleEllip`}>{props.data.title}</p>
+        <div className={styles.work_layer}>
+          <div className={styles.layer_item}>
+            <div className={styles.layer_icon}>
+              <GithubOutlined />
+            </div>
+            <div className={styles.layer_name}>
+              作品源码
+            </div>
+          </div>
+          <div className={styles.layer_item}>
+            <div className={styles.layer_icon}>
+              <GithubOutlined />
+            </div>
+            <div className={styles.layer_name}>
+              作品源码
+            </div>
+          </div>
+        </div>
     </div>
   )
 }
