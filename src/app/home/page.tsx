@@ -29,18 +29,18 @@ const blog = async () => {
       <div className={styles.container}>
           <div className={styles.list}>
             {
-              data.map((item: blogPostType) => 
-                <Link href={`/blog/${item.id}`}>
-                  <div className={styles.item} key={item.id}>
-                    <div className={styles.pic_container}>
-                      <Image className={styles.pic} width={400} height={250} src='https://images.pexels.com/photos/16603973/pexels-photo-16603973.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load' alt='' />
-                    </div>
-                    <p className={styles.title}>{item.title}</p>
-                    <p className={styles.desc}>{item.body}</p>
-                  </div>
-                </Link>
+              // data.map((item: blogPostType) => 
+              //   <Link href={`/blog/${item.id}`}>
+              //     <div className={styles.item} key={item.id}>
+              //       <div className={styles.pic_container}>
+              //         <Image className={styles.pic} width={400} height={250} src='https://images.pexels.com/photos/16603973/pexels-photo-16603973.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load' alt='' />
+              //       </div>
+              //       <p className={styles.title}>{item.title}</p>
+              //       <p className={styles.desc}>{item.body}</p>
+              //     </div>
+              //   </Link>
                 
-              )
+              // )
             }
           </div>
       </div>

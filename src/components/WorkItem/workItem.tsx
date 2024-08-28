@@ -4,7 +4,7 @@ import { Space, Tag } from 'antd';
 import { blogTypeParams } from '@/enum/params';
 import { typeColorOption } from '@/enum/option';
 import { getPic, parseTime } from '@/utils/common';
-import { GithubOutlined } from '@ant-design/icons';
+import { GithubOutlined, PlayCircleOutlined } from '@ant-design/icons';
 
 import Link from 'next/link';
 interface IProps {
@@ -17,6 +17,14 @@ const WorkItem = (props: IProps) => {
   const work = props.data
 
   const [img,setImg] = useState('')
+ 
+ const goHref = (href: string) => {
+    if (href) return window.open(href);
+    
+ }
+ 
+ 
+ 
   useEffect(() => {
     if (work.cover) {
       getPic(work.cover).then(url => {
@@ -30,7 +38,7 @@ const WorkItem = (props: IProps) => {
         <img className={styles.work_cover} src={img} alt="" />
         <p className={`${styles.work_title} doubleEllip`}>{props.data.title}</p>
         <div className={styles.work_layer}>
-          <div className={styles.layer_item}>
+          <div className={styles.layer_item} onClick={() => goHref(work.codeUrl)}>
             <div className={styles.layer_icon}>
               <GithubOutlined />
             </div>
@@ -38,12 +46,12 @@ const WorkItem = (props: IProps) => {
               作品源码
             </div>
           </div>
-          <div className={styles.layer_item}>
+          <div className={`${styles.layer_item} ${styles.layer_disabled}`}>
             <div className={styles.layer_icon}>
-              <GithubOutlined />
+              <PlayCircleOutlined />
             </div>
             <div className={styles.layer_name}>
-              作品源码
+              演示地址
             </div>
           </div>
         </div>

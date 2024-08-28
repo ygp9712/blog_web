@@ -1,0 +1,46 @@
+.container {
+
+}
+
+.page_body {
+    display: block;
+    margin: 0 auto;
+    max-width: 1000px;
+    min-height: 600px;
+    display: flex;
+    justify-content: space-between;
+    flex: 1;
+}
+
+.page_main {
+    width: 100%;
+    border-radius: 15px;
+    padding: 20px;
+    background-image: url(../../assets/image/pexels-photo-1113145.jpeg);
+    background-size: 100% 500px;
+    background-repeat: no-repeat;
+}
+
+.my_card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 480px;
+    padding-bottom: 20px;
+}
+
+.my_avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: #26455f;
+}
+
+.about_me {
+    padding: 20px;
+}
+.about_me img {
+    display: block;
+    margin: 0 auto;
+    padding: 10px 0;
+}

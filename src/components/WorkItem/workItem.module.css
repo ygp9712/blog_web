@@ -2,6 +2,7 @@
     position: relative;
     overflow: hidden;
     width: 100%;
+    border-radius: 15px;
     /* background-color: #000; */
 }
 
@@ -25,9 +26,11 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: var(--main-active-color);
+    /* background-color: var(--main-active-color);
+     */
+    backdrop-filter: saturate(180%) blur(20px);
     scale: 1;
-    opacity: 1;
+    opacity: 0;
     transition: all ease 0.3s;
 }
 
@@ -44,7 +47,19 @@
 }
 
 .layer_item {
+    pointer-events: none;
+    cursor: auto;
     width: 100px;
+}
+
+.work_item:hover .layer_item {
+    pointer-events: all;
+    cursor: pointer;
+}
+
+.layer_disabled {
+    opacity: 0.6;
+    cursor: no-drop;
 }
 
 
@@ -58,3 +73,4 @@
     text-align: center;
     font-size: 18px;
 }
+

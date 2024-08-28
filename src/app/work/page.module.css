@@ -24,3 +24,14 @@
     column-gap: 20px;
     row-gap: 20px;
 }
+
+@media (max-width: 1000px) { 
+    .work_list {
+        grid-template-columns: 1fr;
+    }
+
+    .page_main {
+        border-radius: 0;
+    }
+}
+
