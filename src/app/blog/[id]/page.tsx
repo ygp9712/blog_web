@@ -9,6 +9,7 @@ import { UserOutlined, FolderOpenOutlined, CalendarOutlined } from '@ant-design/
 import { blogTypeParams } from '@/enum/params';
 import CodeBlock from '@/components/CodeBlock/CodeBlock';
 import { cloneByJson } from '@/utils/common';
+import { Affix } from 'antd';
 
 interface IParams {
   params: {
@@ -172,26 +173,29 @@ const BlogDetailPage = (params: IParams) => {
             }
           </article>
 
-          <div className={`${styles.page_side}`}>
-            <Link href={'/blog'}>
-              <div className={`${styles.page_return} common_bg`}>
-                <LeftOutlined />
-                <span style={{marginLeft: '10px'}}>返回列表</span>
+          <Affix offsetTop={100}>
+            <div className={`${styles.page_side}`}>
+              <Link href={'/blog'}>
+                <div className={`${styles.page_return} common_bg`}>
+                  <LeftOutlined />
+                  <span style={{marginLeft: '10px'}}>返回列表</span>
+                </div>
+              </Link>
+              <div className={`${styles.page_navigate} common_bg`}>
+                <p className={styles.heading_title}>目录</p>
+                {
+                  headings && headings.map(item => (
+                    item.tag === 'H1' ?
+                    <div onClick={() => scrollToHeading(item.index)} key={item.index} className={`${styles.heading_h1} ${styles.heading_item} ${nowShow == item.index ? 'active' : ''} hover`} >{item.text}</div>
+                    :
+                    <div onClick={() => scrollToHeading(item.index)} key={item.index} className={`${styles.heading_h2} ${styles.heading_item} ${nowShow == item.index ? 'active' : ''} hover`} >{item.text}</div>
+                  ))
+                }
               </div>
-            </Link>
-            <div className={`${styles.page_navigate} common_bg`}>
-              <p className={styles.heading_title}>目录</p>
-              {
-                headings && headings.map(item => (
-                  item.tag === 'H1' ?
-                  <div onClick={() => scrollToHeading(item.index)} key={item.index} className={`${styles.heading_h1} ${styles.heading_item} ${nowShow == item.index ? 'active' : ''} hover`} >{item.text}</div>
-                  :
-                  <div onClick={() => scrollToHeading(item.index)} key={item.index} className={`${styles.heading_h2} ${styles.heading_item} ${nowShow == item.index ? 'active' : ''} hover`} >{item.text}</div>
-                ))
-              }
-            </div>
 
-          </div>
+            </div>
+          </Affix>
+          
       </div>
       
     </div>

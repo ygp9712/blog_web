@@ -15,7 +15,7 @@ export default function CodeBlock(params: IParams) {
   const { language, code } = params;
   const preRef = useRef(null);
   const [copied, setCopied] = useState(false);
-
+  hljs.configure({});
   const handleCopy = () => {
     console.log('点击了')
   }

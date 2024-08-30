@@ -10,20 +10,38 @@ const my = () => {
 
   const getMe = () => {
     aboutMe().then(res => {
+      console.log('获取', res);
+
       let temp = res.Response.Result.data;
-      const replacedContent = temp.content.replace(
+      let result = '';
+      temp.content.replace(
         /<div class="ql-code-block">([\s\S]*?)<\/div>/g,
         (match: any, code: string) => {
+            console.log('match', match)
             // 将 HTML 实体转换回正常字符，例如 &lt; -> <, &gt; -> >
-            const decodedCode = code.replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&');
-            
-            return ReactDOMServer.renderToString(
-                <CodeBlock language="js" code={decodedCode}></CodeBlock>
-            );
+            const decodedCode = code
+            .replace(/&lt;/g, '<')
+            .replace(/&gt;/g, '>')
+            .replace(/&amp;/g, '&')
+            result += (decodedCode +`
+`); // 换行符导致的回车
+            // return ReactDOMServer.renderToString(
+            //     <CodeBlock language="js" code={decodedCode}></CodeBlock>
+            // );
         }
     );
-      temp.content = replacedContent;
-      console.log('获取', res);
+    temp.content = temp.content.replace(
+        /<div class="ql-code-block-container"[^>]*>([\s\S]*?)<\/div>\s*<\/div>/g,
+        (match: any, code: string) => {
+            console.log('result', result);
+            return ReactDOMServer.renderToString(
+              <CodeBlock language="js" code={result}></CodeBlock>
+          );
+        }
+    );
+    //   temp.content = ReactDOMServer.renderToString(
+    //     <CodeBlock language="js" code={result}></CodeBlock>
+    // );
       setData(cloneByJson(temp));
     })
   }
