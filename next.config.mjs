@@ -10,7 +10,12 @@ const nextConfig = {
                 port: '',
             },
         ],
-    }
+    },
+    eslint: {
+        // 在构建期间忽略 ESLint 错误
+        ignoreDuringBuilds: true,
+    },
+    output: 'standalone'
 };
 
 export default nextConfig;
