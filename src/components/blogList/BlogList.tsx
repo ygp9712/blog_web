@@ -2,7 +2,7 @@ import React from 'react';
 import style from './BlogList.module.css';
 import BlogItem from './components/BlogItem';
 import { Pagination } from 'antd';
-
+import Loading from '../loading/Loading';
 interface IParams {
     data: IBlogItem[],
     page: number
@@ -16,6 +16,9 @@ const BlogList = (params: IParams) => {
     console.log('paramgs', params)
   return (
     <div className={style.list_container}>
+        {
+            data.length == 0 && <Loading></Loading>
+        }
         {
             data && data.map((item, index) => (
                     <BlogItem data={item} key={index}></BlogItem>

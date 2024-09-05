@@ -41,16 +41,36 @@ const BlogDetailPage = (params: IParams) => {
   const handleDetail = (id:string) => {
     getBlogDetail({id}).then(res => {
       let temp = res.Response.Result.data;
-      const replacedContent = temp.content.replace(
-        /<pre class="ql-syntax" spellcheck="false">([\s\S]*?)<\/pre>/g,
+      let result = '';
+      temp.content.replace(
+        /<div class="ql-code-block">([\s\S]*?)<\/div>/g,
         (match: any, code: string) => {
-          return ReactDOMServer.renderToString(<CodeBlock language='js' code={code}></CodeBlock>);
-          ;
+            console.log('match', match)
+            // 将 HTML 实体转换回正常字符，例如 &lt; -> <, &gt; -> >
+            const decodedCode = code
+            .replace(/&lt;/g, '<')
+            .replace(/&gt;/g, '>')
+            .replace(/&amp;/g, '&')
+            result += (decodedCode +`
+`); // 换行符导致的回车
+            // return ReactDOMServer.renderToString(
+            //     <CodeBlock language="js" code={decodedCode}></CodeBlock>
+            // );
         }
-      );
-      temp.content = replacedContent;
+    );
+    temp.content = temp.content.replace(
+        /<div class="ql-code-block-container"[^>]*>([\s\S]*?)<\/div>\s*<\/div>/g,
+        (match: any, code: string) => {
+            console.log('result', result);
+            return ReactDOMServer.renderToString(
+              <CodeBlock language="js" code={result}></CodeBlock>
+          );
+        }
+    );
+    setTimeout(() => {
+      updateHeading(); // 替换code-block后重新计算一次top
+    }, 0)
       console.log('详情', temp);
-
       let date = new Date(temp.add_time);
       temp.add_time = date.getFullYear()+'-'+(date.getMonth()+1).toString().padStart(2, '0')+'-'+(date.getDate()).toString().padStart(2, '0')
       setData(cloneByJson(temp));
@@ -96,7 +116,7 @@ const BlogDetailPage = (params: IParams) => {
       let temp:Heading[] = [];
       h1Doms.forEach((heading: any, index) => {
         const rect = heading.getBoundingClientRect();
-        // console.log('rect', rect)
+        console.log('rect', rect.top)
         headingsRef.current[index] = heading;
         temp.push({
           index,

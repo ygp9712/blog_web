@@ -4,6 +4,7 @@ import styles from './page.module.css';
 import { getWorkList } from './api'
 import { cloneByJson, getPic } from '@/utils/common';
 import WorkItem from '@/components/WorkItem/workItem';
+import Loading from '@/components/loading/Loading';
 const workList = () => {
   const [workList, setWorkList] = useState<IWorkItemType[]>([]);
   const [page, setPage] = useState(1);
@@ -30,6 +31,9 @@ const workList = () => {
     <div className={styles.container}>
       <div className={styles.page_body}>
           <main className={`${styles.page_main} common_bg`}>
+            {
+              workList.length == 0 && <Loading></Loading>
+            }
             <div className={styles.work_list}>
               {
                   workList && workList.map((item, index) => (

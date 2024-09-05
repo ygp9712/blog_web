@@ -5,6 +5,9 @@ import CodeBlock from '@/components/CodeBlock/CodeBlock';
 import { cloneByJson } from '@/utils/common';
 import styles from './page.module.css'
 import {aboutMe} from './api'
+import {Avatar} from 'antd'
+import { UserOutlined } from '@ant-design/icons';
+import Loading from '@/components/loading/Loading';
 const my = () => {
   const [data, setData] = useState<any>();
 
@@ -55,9 +58,14 @@ const my = () => {
       <div className={styles.page_body}>
           <main className={`${styles.page_main} common_bg`}>
             <div className={styles.my_card}>
-                <div className={styles.my_avatar}></div>
+                <div className={styles.my_avatar}>
+                  <Avatar size={120} icon={<UserOutlined />} />
+                </div>
             </div>
-
+            {
+              !data && <Loading></Loading>
+            }
+            
             <div className={styles.about_me} dangerouslySetInnerHTML={{__html: data?.content as Object}}></div>
           </main>
       </div>
