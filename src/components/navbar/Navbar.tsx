@@ -13,7 +13,7 @@ import {
 
 const Navbar = () => {
   const [showModal, setShowModal] = useState<Boolean>(false)
-  const session = useSession();
+  // const session = useSession();
   const pathname = usePathname();
 
   const handleHideModal = () => {
@@ -37,9 +37,9 @@ const Navbar = () => {
                 ))
             }
             {
-              session.status == 'authenticated' && (
-                <Button type="primary">注销</Button>
-              )
+              // session.status == 'authenticated' && (
+              //   <Button type="primary">注销</Button>
+              // )
             }
         </div>
         <div className={styles.extra}>

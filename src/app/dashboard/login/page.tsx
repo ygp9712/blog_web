@@ -9,8 +9,8 @@ import { useRouter } from 'next/navigation';
 
 
 const loginPage = ({searchParams}: any) => {
-  const session = useSession();
-  const router = useRouter();
+  // const session = useSession();
+  // const router = useRouter();
   const [err, setErr] = useState(false);
   const form = Form.useForm()[0];
 
@@ -24,15 +24,15 @@ const loginPage = ({searchParams}: any) => {
   }, []);
 
 
-  console.log('SESSION', session)
+  // console.log('SESSION', session)
 
-  if (session.status === "loading") {
-    return <p>Loading...</p>;
-  }
+  // if (session.status === "loading") {
+  //   return <p>Loading...</p>;
+  // }
 
-  if (session.status === "authenticated") {
-    router?.push("/dashboard");
-  }
+  // if (session.status === "authenticated") {
+  //   router?.push("/dashboard");
+  // }
 
 
   
