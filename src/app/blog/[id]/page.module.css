@@ -14,6 +14,7 @@
     width: 75%;
     border-radius: 15px;
     padding: 30px;
+    margin-bottom: 20px;
 }
 
 .blog_title {
@@ -97,6 +98,28 @@
     opacity: 0.7;
 }
 
+.blog_pagination {
+    width: 75%;
+}
+
+.blog_pagination .blog_prev, .blog_pagination .blog_next {
+    overflow: hidden;
+    width: 200px;
+    height: 60px;
+    line-height: 60px;
+    border-radius: 15px;
+    padding: 0 20px;
+    font-size: 14px;
+}
+
+.blog_pagination .blog_prev {
+    float: left;
+}
+
+.blog_pagination .blog_next {
+    float: right;
+}
+
 @media (max-width: 1200px) {
     .page_side {
         display: none;
@@ -105,6 +128,13 @@
     .page_main {
         width: 100%;
         border-radius: 0;
+    }
+    .blog_pagination {
+        width: 100%;
+        padding: 0;
+    }
+    .blog_pagination .blog_prev, .blog_pagination .blog_next {
+        width: 150px;
     }
 }
 

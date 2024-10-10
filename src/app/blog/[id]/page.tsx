@@ -31,6 +31,8 @@ interface HeadingsRef {
 }
 
 const BlogDetailPage = (params: IParams) => {
+  const [preBlog, setPreBlog] = useState<null | {title: string, _id: string}>(null);
+  const [nextBlog, setNextBlog] = useState<null | {title: string, _id: string}>(null);
   const [toggle, setToggle] = useState<Boolean>(false);
   const contentRef = useRef<HTMLDivElement>(null);
   const headingsRef = useRef<HeadingsRef>({});
@@ -40,7 +42,9 @@ const BlogDetailPage = (params: IParams) => {
   const [nowShow, setNowShow] = useState<number>(0);
   const handleDetail = (id:string) => {
     getBlogDetail({id}).then(res => {
-      let temp = res.Response.Result.data;
+      setPreBlog(res.Response.Result.data.previousBlog);
+      setNextBlog(res.Response.Result.data.nextBlog);
+      let temp = res.Response.Result.data.currentBlog;
       let result = '';
       temp.content.replace(
         /<div class="ql-code-block">([\s\S]*?)<\/div>/g,
@@ -216,6 +220,32 @@ const BlogDetailPage = (params: IParams) => {
             </div>
           </Affix>
           
+      </div>
+      <div className={styles.page_body} style={{ minHeight: '60px', height: '60px' }}>
+        <div className={`${styles.blog_pagination}`}>
+          {
+            nextBlog && 
+            <Link href={`/blog/${nextBlog._id}`}>
+              <div className={`${styles.blog_prev} common_bg singleEllip`}>
+                  <span>上一篇：</span>
+                  <span>{nextBlog.title}</span>
+              </div>
+            </Link>
+            
+          }
+          {
+            preBlog &&
+            <Link href={`/blog/${preBlog._id}`}>
+              <div className={`${styles.blog_next} common_bg singleEllip`}>
+                    <span>下一篇：</span>
+                  <span>{preBlog.title}</span>
+              </div>
+            </Link>
+            
+          }
+          
+        </div>
+                
       </div>
       
     </div>

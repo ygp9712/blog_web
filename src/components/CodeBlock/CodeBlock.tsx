@@ -22,7 +22,7 @@ export default function CodeBlock(params: IParams) {
 
   return (
     <div className="codeBox" style={{ position: 'relative'}}>
-      <pre style={{whiteSpace: 'break-spaces'}}>
+      <pre>
         <code id={language} ref={preRef} className={language} dangerouslySetInnerHTML={{__html: hljs.highlight(code, {language: language}).value}}>
         </code>
       </pre>

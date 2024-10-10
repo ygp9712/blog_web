@@ -65,6 +65,9 @@ html,body {
 
 
 .codeBox {
+  scrollbar-width: none; /* 隐藏滚动条 */
+  -ms-overflow-style: none;  /* 隐藏滚动条 */
+  overflow: scroll;
   border-radius: 10px;
   padding: 25px;
   margin: 20px 0;
@@ -137,3 +140,9 @@ a {
   -webkit-box-orient: vertical;
 }
 
+/* 单行省略 */
+.singleEllip {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
