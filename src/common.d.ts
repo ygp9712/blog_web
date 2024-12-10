@@ -27,6 +27,7 @@ interface IBlogItem {
   _id: string;
   url?: string;
   codeUrl: string;
+  showUrl?: string;
 }
 
 interface IStats {

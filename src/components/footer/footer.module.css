@@ -1,4 +1,7 @@
 .container {
-    height: 50px;
-    display: flex;
+    width: 100vw;
+    height: 100px;
+    line-height: 100px;
+    text-align: center;
+    word-break: break-all;
 }

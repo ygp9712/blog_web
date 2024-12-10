@@ -46,8 +46,8 @@ const WorkItem = (props: IProps) => {
               作品源码
             </div>
           </div>
-          <div className={`${styles.layer_item} ${styles.layer_disabled}`}>
-            <div className={styles.layer_icon}>
+          <div className={`${styles.layer_item} ${work.showUrl && work.showUrl.length >= 0 ? '' : styles.layer_disabled}`}>
+            <div onClick={() => {work.showUrl && work.showUrl.length >= 0 ? goHref(work.showUrl) : null}} className={styles.layer_icon}>
               <PlayCircleOutlined />
             </div>
             <div className={styles.layer_name}>
