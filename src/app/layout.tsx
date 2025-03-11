@@ -7,6 +7,7 @@ import { ThemeProvider, ThemeContext } from "@/context/ThemeContext";
 import AuthProvider from "@/components/AuthProvider/AuthProvider";
 import { ConfigProvider } from 'antd';
 import '@/assets/iconfont/iconfont.css'
+import NextTopLoader from 'nextjs-toploader';
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -35,6 +36,7 @@ export default function RootLayout({
           <ThemeProvider>
             <ConfigProvider theme= {theme}>
               <AuthProvider>
+                  <NextTopLoader/>
                   <Navbar/>
                     <div style={{
                       minHeight: 'calc(100vh - 150px)'
