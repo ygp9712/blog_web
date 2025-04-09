@@ -8,7 +8,7 @@ import {getBlogDetail} from '../api'
 import { UserOutlined, FolderOpenOutlined, CalendarOutlined } from '@ant-design/icons';
 import { blogTypeParams } from '@/enum/params';
 import CodeBlock from '@/components/CodeBlock/CodeBlock';
-import { cloneByJson } from '@/utils/common';
+import { cloneByJson, parseTime } from '@/utils/common';
 import { Affix } from 'antd';
 
 interface IParams {
@@ -195,6 +195,8 @@ const BlogDetailPage = (params: IParams) => {
             {
               data &&<div ref={contentRef} className={styles.blog_content} dangerouslySetInnerHTML={{__html: data.content}}></div>
             }
+
+            <p className={styles.edit_time}>最后更新于：{data && parseTime(new Date(data.updatedAt))}</p>
           </article>
 
           <Affix offsetTop={100}>

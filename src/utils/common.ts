@@ -41,7 +41,7 @@ export function parseTime(time: string | number | Date, cFormat?: string): strin
   if (arguments.length === 0 || !time) {
       return null
   }
-  const format = cFormat || '{y}-{m}-{d} {h}:{i}:{s}';
+  const format = cFormat || `{y}/{m}/{d}  {h}:{i}:{s}`;
   type FormatObjKey = 'y' | 'm' | 'd' | 'h' | 'i' | 's' | 'a';
   let date
   if (typeof time === 'object') {

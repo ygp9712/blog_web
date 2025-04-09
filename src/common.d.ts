@@ -13,8 +13,9 @@ interface IBlogItem {
   status: number,
   type: any,
   desc?: string,
-  url?: string
-  content: string
+  url?: string,
+  content: string,
+  updatedAt: Date
 }
 
 // 作品
@@ -33,7 +34,7 @@ interface IBlogItem {
 interface IStats {
   month: number
   monthCount: number
-  types: {_id: any, count: number}[]
+  types: {_id: any, count: number, typeName: string}[]
   year: number
   yearCount: number
 }

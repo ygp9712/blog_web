@@ -16,7 +16,7 @@ const TypeField = (params : IParams) => {
         <Tag  onClick={() => params.handleTagClick('')} style={{cursor: 'pointer'}}>全部</Tag>
           {
             params.stats.types.map(item => (
-              <Tag key={item._id} onClick={() => params.handleTagClick(item._id)} style={{cursor: 'pointer'}} color={typeColorOption[Number(item._id % 10)].name}>{blogTypeParams[item._id]}({item.count})</Tag>
+              <Tag key={item._id} onClick={() => params.handleTagClick(item._id)} style={{cursor: 'pointer'}} color={typeColorOption[Number(item._id % 10)].name}>{item.typeName}({item.count})</Tag>
             ))
           }
         </Space>
