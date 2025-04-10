@@ -16,9 +16,7 @@ export default function CodeBlock(params: IParams) {
   const preRef = useRef(null);
   const [copied, setCopied] = useState(false);
   hljs.configure({});
-  const handleCopy = () => {
-    console.log('点击了')
-  }
+  console.log('传入的代码是:'+code);
 
   return (
     <div className="codeBox" style={{ position: 'relative'}}>

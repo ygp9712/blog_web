@@ -30,6 +30,20 @@ interface HeadingsRef {
   [key: string]: HTMLElement | null;
 }
 
+const countByExec = (str: string): number => {
+  const regex = /<div class="ql-code-block">([\s\S]*?)<\/div>/g;
+  let count = 0;
+  let match: RegExpExecArray | null;
+
+  while ((match = regex.exec(str)) !== null) {
+    count++;
+    // 可在此处同步处理匹配内容
+    // const code = match[1];
+  }
+
+  return count;
+};
+
 const BlogDetailPage = (params: IParams) => {
   const [preBlog, setPreBlog] = useState<null | {title: string, _id: string}>(null);
   const [nextBlog, setNextBlog] = useState<null | {title: string, _id: string}>(null);
@@ -45,10 +59,12 @@ const BlogDetailPage = (params: IParams) => {
       setPreBlog(res.Response.Result.data.previousBlog);
       setNextBlog(res.Response.Result.data.nextBlog);
       let temp = res.Response.Result.data.currentBlog;
-      let result = '';
+      // 使用对象存储每个代码块的索引
+      const codeBlocks: string[] = [];
       temp.content.replace(
         /<div class="ql-code-block">([\s\S]*?)<\/div>/g,
         (match: any, code: string) => {
+            let result = '';
             console.log('match', match)
             // 将 HTML 实体转换回正常字符，例如 &lt; -> <, &gt; -> >
             const decodedCode = code
@@ -57,6 +73,7 @@ const BlogDetailPage = (params: IParams) => {
             .replace(/&amp;/g, '&')
             result += (decodedCode +`
 `); // 换行符导致的回车
+            codeBlocks.push(result);
             // return ReactDOMServer.renderToString(
             //     <CodeBlock language="js" code={decodedCode}></CodeBlock>
             // );
@@ -65,9 +82,10 @@ const BlogDetailPage = (params: IParams) => {
     temp.content = temp.content.replace(
         /<div class="ql-code-block-container"[^>]*>([\s\S]*?)<\/div>\s*<\/div>/g,
         (match: any, code: string) => {
-            console.log('result', result);
+            // console.log('matchmatchmatch', countByExec(match));
+            // console.log('codeBlocks', codeBlocks);
             return ReactDOMServer.renderToString(
-              <CodeBlock language="js" code={result}></CodeBlock>
+              <CodeBlock language="js" code={codeBlocks.splice(0, countByExec(match)).join('')}></CodeBlock>
           );
         }
     );
