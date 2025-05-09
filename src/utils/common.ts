@@ -31,6 +31,25 @@ export function cloneByJson(obj: object) {
   return JSON.parse(JSON.stringify(obj))
 }
 
+
+/**
+ * @description 防抖函数
+ * @param {Function} func 需要防抖的函数
+ * @param {number} delay 延迟时间(毫秒)
+ * @returns {Function} 返回防抖后的函数
+ */
+export function debounce(func: Function, delay: number): Function {
+  let timer: NodeJS.Timeout | null = null;
+  return function(this: any, ...args: any[]) {
+    if (timer) {
+      clearTimeout(timer);
+    }
+    timer = setTimeout(() => {
+      func.apply(this, args);
+    }, delay);
+  };
+}
+
 /**
  * 时间规范化
  * @param {(Date|string|number)} time

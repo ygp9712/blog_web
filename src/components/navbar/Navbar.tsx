@@ -10,7 +10,7 @@ import { usePathname } from 'next/navigation'
 import {
   MenuOutlined
 } from '@ant-design/icons';
-
+import Search from '../Search'
 const Navbar = () => {
   const [showModal, setShowModal] = useState<Boolean>(false)
   // const session = useSession();
@@ -43,6 +43,7 @@ const Navbar = () => {
             }
         </div>
         <div className={styles.extra}>
+          <Search />
           <DarkModeToggle />
         </div>
         
@@ -62,6 +63,7 @@ const Navbar = () => {
                 }
               </div>
               <div className={`${styles.navTool} common_bg`}>
+                <Search />
                 <DarkModeToggle />
               </div>
             </div>

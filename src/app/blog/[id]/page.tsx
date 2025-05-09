@@ -214,7 +214,7 @@ const BlogDetailPage = (params: IParams) => {
               data &&<div ref={contentRef} className={styles.blog_content} dangerouslySetInnerHTML={{__html: data.content}}></div>
             }
 
-            <p className={styles.edit_time}>最后更新于：{data && parseTime(new Date(data.updatedAt))}</p>
+            <p className={styles.edit_time}>最后更新于：{data && parseTime(new Date(data.edit_time))}</p>
           </article>
 
           <Affix offsetTop={100}>

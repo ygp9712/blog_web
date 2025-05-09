@@ -15,7 +15,8 @@ interface IBlogItem {
   desc?: string,
   url?: string,
   content: string,
-  updatedAt: Date
+  updatedAt: Date,
+  edit_time: Date
 }
 
 // 作品
