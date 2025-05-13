@@ -27,7 +27,7 @@ html,body {
 
 .dark {
   --main-font-color: #fff;
-  background-color: #000;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
   color: #fff;
 }
 

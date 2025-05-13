@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import ParticlesBackground from "@/components/ParticlesBackground";
 import Navbar from "@/components/navbar/Navbar";
 import Footer from "@/components/footer/Footer";
 import { ThemeProvider, ThemeContext } from "@/context/ThemeContext";
@@ -34,8 +35,9 @@ export default function RootLayout({
     <html lang="en">
         <body className={inter.className}>
           <ThemeProvider>
-            <ConfigProvider theme= {theme}>
+            <ConfigProvider theme={theme}>
               <AuthProvider>
+                  <ParticlesBackground/>
                   <NextTopLoader/>
                   <Navbar/>
                     <div style={{
