@@ -1,7 +1,8 @@
 .container {
     width: 100vw;
-    height: 100px;
-    line-height: 100px;
+    /* height: 100px; */
+    line-height: 30px;
     text-align: center;
     word-break: break-all;
+    padding-bottom: 40px;
 }
