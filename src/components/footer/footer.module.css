@@ -6,3 +6,9 @@
     word-break: break-all;
     padding-bottom: 40px;
 }
+
+.beian_info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
