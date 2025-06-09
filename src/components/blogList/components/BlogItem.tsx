@@ -17,8 +17,11 @@ const BlogItem = (props: IProps) => {
   const [img,setImg] = useState('')
   useEffect(() => {
     if (blog.cover) {
+      console.log('触发了');
       getPic(blog.cover).then(url => {
+        if(url) {
           setImg(url)
+        }
       })
     }
     
